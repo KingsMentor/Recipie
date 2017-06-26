@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/info_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/step_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableRight="@drawable/ic_play_arrow_black_24dp"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="1. Recipe Introduction" />
+
+</android.support.v7.widget.LinearLayoutCompat>

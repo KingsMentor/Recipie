@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Recipie</string>
+    <string name="action_settings">Settings</string>
+    <string name="steps">Steps: %s</string>
+    <string name="servings">Servings: %s</string>
+    <string name="ingredient">Ingredients: %s</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_recipe_title">Recipe(s) - %s</string>
+    <string name="widget_recipe_title_default">Recipe(s)</string>
+
+</resources>
