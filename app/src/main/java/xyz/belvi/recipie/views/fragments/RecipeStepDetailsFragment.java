@@ -1,7 +1,5 @@
 package xyz.belvi.recipie.views.fragments;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,13 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatImageView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 
@@ -36,6 +34,7 @@ public class RecipeStepDetailsFragment extends RecipeStepFragment implements Rec
 
     private RecipeStepDetailsHandler mRecipeStepDetailsHandler = new RecipeStepDetailsHandler();
     private SimpleExoPlayerView mPlayerView;
+    private AppCompatImageView mThumbnail;
 
 
     @Nullable
@@ -44,6 +43,7 @@ public class RecipeStepDetailsFragment extends RecipeStepFragment implements Rec
         View rootView = inflater.inflate(R.layout.recipe_step_details, container, false);
 
         mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.recipe_vid_player);
+        mThumbnail = (AppCompatImageView) rootView.findViewById(R.id.recipe_img);
 
         mRecipeStepDetailsHandler.init(getContext(), this);
         Recipe recipe = getRecipe();
@@ -100,19 +100,9 @@ public class RecipeStepDetailsFragment extends RecipeStepFragment implements Rec
 
 
     public void loadThumbnail(RecipeStep recipeStep) {
-        Glide.with(getContext()).load(Uri.parse(recipeStep.getThumbnailURL()))
-                .asBitmap().listener(new RequestListener<Uri, Bitmap>() {
-            @Override
-            public boolean onException(Exception e, Uri model, Target<Bitmap> target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Bitmap resource, Uri model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                mPlayerView.setDefaultArtwork(resource);
-                return false;
-            }
-        }).preload();
+        mThumbnail.setVisibility(View.VISIBLE);
+        mPlayerView.setVisibility(View.GONE);
+        Glide.with(getContext()).load(recipeStep.getThumbnailURL()).into(mThumbnail);
 
     }
 
@@ -156,8 +146,14 @@ public class RecipeStepDetailsFragment extends RecipeStepFragment implements Rec
 
     @Override
     public void onPageSelected(int position) {
-        loadThumbnail(getRecipe().getSteps().get(position));
-        mRecipeStepDetailsHandler.loadMediaContent(getRecipe().getSteps().get(position));
+        RecipeStep recipeStep = getRecipe().getSteps().get(position);
+        if (TextUtils.isEmpty(recipeStep.getVideoURL()))
+            loadThumbnail(recipeStep);
+        else {
+            mThumbnail.setVisibility(View.GONE);
+            mPlayerView.setVisibility(View.VISIBLE);
+            mRecipeStepDetailsHandler.loadMediaContent(getRecipe().getSteps().get(position));
+        }
 
     }
 

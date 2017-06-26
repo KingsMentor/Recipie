@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="4dp"
@@ -34,8 +34,14 @@
                 <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                     android:id="@+id/recipe_vid_player"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" />
-            </LinearLayout>
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/recipe_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </FrameLayout>
 
 
             <android.support.v4.view.ViewPager
