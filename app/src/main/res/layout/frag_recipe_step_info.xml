@@ -26,7 +26,6 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/source_bold"
                     android:text="Ingredient List"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -35,7 +34,6 @@
                     android:id="@+id/ingredients_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/source_code"
                     android:paddingLeft="16dp"
                     android:paddingTop="4dp"
                     android:textSize="14sp" />

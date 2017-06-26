@@ -17,7 +17,6 @@
             android:id="@+id/step_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/source_code_light"
             android:padding="16dp"
             android:textSize="16sp" />
 
