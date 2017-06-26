@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.util.Log;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -154,7 +153,6 @@ public class RecipeStepDetailsHandler implements ExoPlayer.EventListener {
     }
 
     public void release() {
-        Log.e("re", "release");
         if (mExoPlayer != null) {
             mExoPlayer.stop();
             mExoPlayer.release();
